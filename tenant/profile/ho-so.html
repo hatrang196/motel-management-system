@@ -1,0 +1,48 @@
+<div id="profile-overlay" 
+     class="fixed inset-0 z-[100] hidden flex justify-end p-4 bg-black/20 backdrop-blur-sm transition-all duration-300" 
+     onclick="toggleProfile()">
+    
+    <div class="w-80 h-fit bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-2xl border border-gray-100 dark:border-zinc-800 overflow-hidden transform transition-transform duration-300" 
+         onclick="event.stopPropagation()">
+        
+        <div class="p-6 bg-green-50/50 dark:bg-zinc-900/50 border-b border-gray-100 dark:border-zinc-800 flex flex-col items-center">
+            <div class="w-20 h-20 bg-gray-200 dark:bg-zinc-800 rounded-full flex items-center justify-center text-gray-400 mb-3 border-4 border-white dark:border-zinc-700 shadow-sm relative overflow-hidden">
+                <i class="fas fa-user text-3xl"></i>
+                <div class="absolute bottom-1 right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-zinc-800 rounded-full"></div>
+            </div>
+            <h3 class="font-bold text-gray-800 dark:text-zinc-100 text-lg">Zillionaire</h3>
+            <p class="text-xs text-gray-400 font-medium tracking-wide uppercase">Người thuê nhà</p>
+        </div>
+
+        <div class="p-2 space-y-1">
+            <a href="../settings/cai-dat-thong-tin.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-green-50 dark:hover:bg-zinc-800 transition">
+                <div class="w-9 h-9 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-gray-700 dark:text-zinc-200">Thay đổi thông tin</p>
+                    <p class="text-[10px] text-gray-400">CCCD, ngày sinh, nơi ở...</p>
+                </div>
+            </a>
+
+            <a href="../settings/cai-dat-chung.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 dark:hover:bg-zinc-800 transition">
+                <div class="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-500">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-gray-700 dark:text-zinc-200">Giao diện sáng/tối</p>
+                    <p class="text-[10px] text-gray-400">Tùy chỉnh chủ đề hệ thống</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="p-2 border-t border-gray-50 dark:border-zinc-800">
+            <a href="../../index.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/10 transition text-red-500">
+                <div class="w-9 h-9 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                <span class="text-sm font-bold">Đăng xuất hệ thống</span>
+            </a>
+        </div>
+    </div>
+</div>

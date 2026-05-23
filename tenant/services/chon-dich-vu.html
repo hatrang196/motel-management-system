@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn Dịch Vụ - Portal Người Thuê</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-bg: #F4FBF4; 
+            --main-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text-main: #4b5563;
+            --active-green: #BEE9BE;
+        }
+        /* DARK MODE CHỮ SÁNG RÕ NÉT */
+        body.dark {
+            --sidebar-bg: #111111;
+            --main-bg: #000000;
+            --card-bg: #1a1a1a; 
+            --text-main: #f3f4f6;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); color: var(--text-main); transition: 0.3s; }
+        .sidebar-bg { background-color: var(--sidebar-bg); }
+        .nav-item { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 0.75rem; transition: 0.2s; font-weight: 600; }
+        .nav-item:hover { background-color: rgba(0,0,0,0.05); }
+        .dark .nav-item:hover { background-color: rgba(255,255,255,0.05); }
+        .nav-active { background-color: var(--active-green) !important; color: #2E7D32 !important; }
+        
+        /* Form Card nổi lên */
+        .card-style { 
+            background-color: var(--card-bg); 
+            border-radius: 1rem; 
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+        .dark .card-style { border: 1px solid #27272a; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4); }
+
+        /* Custom Input & Select */
+        .input-form {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+            background-color: white;
+            outline: none;
+            transition: 0.2s;
+            appearance: none;
+        }
+        .dark .input-form {
+            background-color: #2a2a2a;
+            border-color: #3f3f46;
+            color: #f3f4f6;
+        }
+        .input-form:focus { border-color: #88C488; }
+        
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: #9ca3af;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <aside class="w-64 sidebar-bg h-full border-r border-gray-100 dark:border-zinc-800 flex flex-col shrink-0 transition-colors">
+        <div class="p-6 mb-4">
+            <a href="../../auth/login.html">
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
+                    <path d="M50 10L10 45V90H90V45L50 10Z" fill="#88C488"/>
+                    <rect x="40" y="55" width="20" height="35" fill="#E5AA55"/>
+                    <path d="M50 5L5 45H15V85H85V45H95L50 5Z" stroke="#88C488" stroke-width="4"/>
+                </svg>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 overflow-y-auto">
+            <div class="mb-6">
+                <p class="px-3 text-xs font-bold text-gray-400 dark:text-zinc-300 uppercase mb-4 tracking-widest">Nghiệp vụ</p>
+                <a href="../portal/tong-quan.html" class="nav-item"><i class="fa-solid fa-chart-simple w-6 text-xl"></i> <span>Tổng Quan</span></a>
+                <a href="../invoices/hoa-don.html" class="nav-item dark:text-zinc-300"><i class="fa-solid fa-dollar-sign w-6 text-xl"></i> <span>Hóa Đơn</span></a>
+            </div>
+            <div class="mb-6">
+                <p class="px-3 text-xs font-bold text-gray-400 dark:text-zinc-300 uppercase mb-4 tracking-widest">Dữ liệu</p>
+                <a href="../rooms/phong.html" class="nav-item dark:text-zinc-300"><i class="fa-solid fa-house w-6 text-xl"></i> <span>Phòng</span></a>
+                <a href="dich-vu.html" class="nav-item nav-active"><i class="fa-solid fa-wifi w-6 text-xl"></i> <span>Dịch Vụ</span></a>
+                <a href="../utilities/dien-nuoc.html" class="nav-item dark:text-zinc-300"><i class="fa-solid fa-droplet w-6 text-xl"></i> <span>Điện Nước</span></a>
+                <a href="../contracts/hop-dong.html" class="nav-item dark:text-zinc-300"><i class="fa-solid fa-paperclip w-6 text-xl"></i> <span>Hợp Đồng</span></a>
+            </div>
+            <div class="mt-auto pb-6">
+                <p class="px-3 text-xs font-bold text-gray-400 dark:text-zinc-300 uppercase mb-4 tracking-widest">Nhà của tôi</p>
+                <a href="../settings/cai-dat-chung.html" class="nav-item dark:text-zinc-300">
+                    <i class="fa-solid fa-gear w-6 text-xl"></i> <span>Cài Đặt Chung</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white dark:bg-black border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between px-8 shrink-0 relative transition-colors">
+            <div class="relative w-96 flex items-center gap-3 text-gray-400">
+                <i class="fas fa-search"></i>
+                <input type="text" id="global-search" oninput="liveSearch(this.value)" placeholder="Tìm kiếm nhanh..." 
+                    class="bg-transparent outline-none text-sm w-full py-2 dark:text-white dark:placeholder-zinc-600">
+                <div id="search-results" class="hidden absolute top-full left-0 w-full bg-white dark:bg-[#121212] shadow-2xl border border-gray-100 dark:border-zinc-800 rounded-b-xl z-50 mt-1 max-h-60 overflow-y-auto"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <i class="fas fa-ellipsis-v text-gray-400"></i>
+                <div onclick="toggleProfile()" id="header-avatar" class="w-10 h-10 bg-gray-200 dark:bg-zinc-800 rounded-full flex items-center justify-center text-gray-500 overflow-hidden cursor-pointer hover:ring-2 ring-green-400 transition-all">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-1 p-10 overflow-y-auto">
+            <h1 class="font-bold text-2xl text-gray-800 dark:text-zinc-100 mb-2 uppercase tracking-wide">CHỌN DỊCH VỤ</h1>
+            
+            <div class="flex items-center gap-2 text-xs text-gray-400 dark:text-zinc-400 mb-10">
+                <a href="dich-vu.html" class="hover:text-green-500">Dịch vụ</a>
+                <span>●</span> <span class="text-zinc-500 dark:text-zinc-500 font-medium">Chọn dịch vụ</span>
+            </div>
+
+            <div class="max-w-4xl">
+                <h2 class="font-bold text-gray-700 dark:text-zinc-200 mb-6 uppercase text-sm tracking-widest">Thông tin dịch vụ</h2>
+                
+                <div class="card-style p-12 space-y-8">
+                    <div class="grid grid-cols-[150px_1fr] items-center gap-8">
+                        <label class="text-sm font-semibold dark:text-zinc-400 text-gray-500">Dịch vụ</label>
+                        <div class="select-wrapper">
+                            <select id="service-name" class="input-form">
+                                <option value="">Chọn dịch vụ...</option>
+                                <option value="Internet / Wifi">Internet / Wifi</option>
+                                <option value="Vệ sinh hành lang">Vệ sinh hành lang</option>
+                                <option value="Gửi xe">Gửi xe</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-[150px_1fr] items-center gap-8">
+                        <label class="text-sm font-semibold dark:text-zinc-400 text-gray-500">Loại phí</label>
+                        <div class="select-wrapper">
+                            <select id="service-type" class="input-form">
+                                <option value="">Chọn loại phí...</option>
+                                <option value="Phí cố định">Phí cố định hàng tháng</option>
+                                <option value="Phí tính theo số lượng">Phí tính theo số lượng</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-[150px_1fr] items-center gap-8">
+                        <label class="text-sm font-semibold dark:text-zinc-400 text-gray-500">Đơn giá</label>
+                        <input type="number" id="service-price" class="input-form" placeholder="Nhập đơn giá...">
+                    </div>
+
+                    <div class="grid grid-cols-[150px_1fr] items-center gap-8">
+                        <label class="text-sm font-semibold dark:text-zinc-400 text-gray-500">Đơn vị tính</label>
+                        <div class="select-wrapper">
+                            <select id="service-unit" class="input-form">
+                                <option value="">Chọn đơn vị tính...</option>
+                                <option value="/ Tháng">/ Tháng</option>
+                                <option value="/ Người">/ Người</option>
+                                <option value="/ Xe">/ Xe</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-10">
+                    <button onclick="saveServiceData()" class="bg-[#2a2a2a] dark:bg-white dark:text-black text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg hover:opacity-90 transition">
+                        Lưu thay đổi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="profile-container"></div>
+
+    <script>
+        if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        // HÀM LƯU DỮ LIỆU DỊCH VỤ VÀ CHUYỂN TRANG
+        function saveServiceData() {
+            const name = document.getElementById('service-name').value;
+            const type = document.getElementById('service-type').value;
+            const price = document.getElementById('service-price').value;
+            const unit = document.getElementById('service-unit').value;
+
+            if(!name || !price || !type || !unit) {
+                alert("Vui lòng nhập đầy đủ thông tin dịch vụ!");
+                return;
+            }
+
+            const newService = {
+                name: name,
+                type: type,
+                price: price,
+                unit: unit,
+                date: new Date().toLocaleDateString('vi-VN')
+            };
+
+            // Lấy danh sách cũ, thêm cái mới và lưu lại
+            let services = JSON.parse(localStorage.getItem('selectedServices') || "[]");
+            services.push(newService);
+            localStorage.setItem('selectedServices', JSON.stringify(services));
+
+            // Chuyển hướng về trang danh sách
+            window.location.href = 'dich-vu.html';
+        }
+
+        // ĐỒNG BỘ ẢNH VÀ THÔNG TIN TỪ LOCALSTORAGE
+        function syncUserInfo() {
+            const savedAvatar = localStorage.getItem('userAvatar');
+            const savedName = localStorage.getItem('userName');
+            if(savedAvatar) {
+                const imgHTML = `<img src="${savedAvatar}" class="w-full h-full object-cover">`;
+                document.getElementById('header-avatar').innerHTML = imgHTML;
+                const pImg = document.querySelector('#profile-overlay .w-20.h-20');
+                if(pImg) pImg.innerHTML = imgHTML;
+            }
+            if(savedName) {
+                const pName = document.querySelector('#profile-overlay h3');
+                if(pName) pName.innerText = savedName;
+            }
+        }
+
+        fetch('../profile/ho-so.html').then(r => r.text()).then(data => {
+            document.getElementById('profile-container').innerHTML = data;
+            syncUserInfo();
+        });
+
+        function toggleProfile() {
+            const overlay = document.getElementById('profile-overlay');
+            if(overlay) overlay.classList.toggle('hidden');
+        }
+
+        const items = [
+            { name: 'Tổng Quan', link: '../portal/tong-quan.html', icon: 'fa-chart-simple' },
+            { name: 'Hóa Đơn', link: '../invoices/hoa-don.html', icon: 'fa-dollar-sign' },
+            { name: 'Phòng', link: '../rooms/phong.html', icon: 'fa-house' },
+            { name: 'Dịch Vụ', link: 'dich-vu.html', icon: 'fa-wifi' },
+            { name: 'Điện Nước', link: '../utilities/dien-nuoc.html', icon: 'fa-droplet' },
+            { name: 'Hợp Đồng', link: '../contracts/hop-dong.html', icon: 'fa-paperclip' },
+            { name: 'Cài Đặt Chung', link: '../settings/cai-dat-chung.html', icon: 'fa-gear' }
+        ];
+
+        function liveSearch(val) {
+            const res = document.getElementById('search-results');
+            const term = val.toLowerCase().trim();
+            if (!term) return res.classList.add('hidden');
+            const filtered = items.filter(i => i.name.toLowerCase().includes(term));
+            res.classList.remove('hidden');
+            res.innerHTML = filtered.map(i => `
+                <a href="${i.link}" class="flex items-center gap-3 p-3 hover:bg-green-50 dark:hover:bg-zinc-900 transition border-b border-gray-50 dark:border-zinc-800 last:border-none">
+                    <i class="fa-solid ${i.icon} text-green-600"></i>
+                    <span class="text-sm font-semibold dark:text-zinc-200">${i.name}</span>
+                </a>
+            `).join('') || '<p class="p-4 text-center text-xs text-gray-400">Không tìm thấy</p>';
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#global-search')) document.getElementById('search-results').classList.add('hidden');
+        });
+
+        window.onload = syncUserInfo;
+    </script>
+</body>
+</html>

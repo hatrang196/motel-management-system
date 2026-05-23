@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt chung - Portal Người Thuê</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-bg: #F4FBF4; 
+            --main-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text-main: #4b5563;
+            --text-title: #9ca3af;
+            --border-color: #f3f4f6;
+        }
+
+        body.dark {
+            --sidebar-bg: #1a1a1a;
+            --main-bg: #121212;
+            --card-bg: #242424;
+            --text-main: #e5e7eb;
+            --text-title: #6b7280;
+            --border-color: #333333;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); color: var(--text-main); transition: all 0.3s ease; }
+        .sidebar-bg { background-color: var(--sidebar-bg); } 
+        .card-style { background-color: var(--card-bg); border-color: var(--border-color); border-width: 1px; }
+        .text-title-style { color: var(--text-title); }
+        .nav-item { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; border-radius: 0.75rem; transition: 0.2s; font-weight: 600; }
+        .nav-item:hover { background-color: rgba(0,0,0,0.05); }
+        .nav-active { background-color: #BEE9BE !important; color: #2E7D32 !important; }
+        .nav-active i { color: #2E7D32 !important; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <aside class="w-64 sidebar-bg h-full border-r border-gray-100 dark:border-zinc-800 flex flex-col shrink-0 transition-colors duration-300">
+        <div class="p-6 mb-4">
+            <a href="../../auth/login.html">
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="none" class="cursor-pointer hover:opacity-80 transition">
+                    <path d="M50 10L10 45V90H90V45L50 10Z" fill="#88C488"/>
+                    <rect x="40" y="55" width="20" height="35" fill="#E5AA55"/>
+                    <path d="M50 5L5 45H15V85H85V45H95L50 5Z" stroke="#88C488" stroke-width="4"/>
+                </svg>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 overflow-y-auto">
+            <div class="mb-6">
+                <p class="px-3 text-xs font-bold text-title-style uppercase mb-4 tracking-widest">Nghiệp vụ</p>
+                <a href="../portal/tong-quan.html" class="nav-item"><i class="fa-solid fa-chart-simple w-6 text-xl"></i> <span>Tổng Quan</span></a>
+                <a href="../invoices/hoa-don.html" class="nav-item"><i class="fa-solid fa-dollar-sign w-6 text-xl"></i> <span>Hóa Đơn</span></a>
+            </div>
+            <div class="mb-6">
+                <p class="px-3 text-xs font-bold text-title-style uppercase mb-4 tracking-widest">Dữ liệu</p>
+                <a href="../rooms/phong.html" class="nav-item"><i class="fa-solid fa-house w-6 text-xl"></i> <span>Phòng</span></a>
+                <a href="../services/dich-vu.html" class="nav-item"><i class="fa-solid fa-wifi w-6 text-xl"></i> <span>Dịch Vụ</span></a>
+                <a href="../utilities/dien-nuoc.html" class="nav-item"><i class="fa-solid fa-droplet w-6 text-xl"></i> <span>Điện Nước</span></a>
+                <a href="../contracts/hop-dong.html" class="nav-item"><i class="fa-solid fa-paperclip w-6 text-xl"></i> <span>Hợp Đồng</span></a>
+            </div>
+            <div class="mt-auto pb-6">
+                <p class="px-3 text-xs font-bold text-title-style uppercase mb-4 tracking-widest">Nhà của tôi</p>
+                <a href="cai-dat-chung.html" class="nav-item nav-active shadow-sm"><i class="fa-solid fa-gear w-6 text-xl"></i> <span class="font-bold">Cài Đặt Chung</span></a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white dark:bg-black border-b border-gray-100 dark:border-zinc-800 flex items-center justify-between px-8 relative transition-colors">
+            <div class="relative w-96 flex items-center gap-3 text-gray-400">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" oninput="liveSearch(this.value)" placeholder="Tìm kiếm nhanh..." class="bg-transparent outline-none text-sm w-full py-2">
+                <div id="search-results" class="hidden absolute top-full left-0 w-full bg-white dark:bg-[#121212] shadow-2xl border border-gray-100 dark:border-zinc-800 rounded-b-xl z-50 mt-1 max-h-60 overflow-y-auto"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <i class="fas fa-ellipsis-v text-gray-400"></i>
+                <div onclick="toggleProfile()" id="header-avatar" class="w-10 h-10 bg-gray-200 dark:bg-zinc-800 rounded-full flex items-center justify-center text-gray-500 cursor-pointer hover:ring-2 ring-green-400 transition overflow-hidden">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-10 max-w-4xl overflow-y-auto">
+            <h2 class="text-title-style font-bold uppercase text-xs mb-6 tracking-widest">Cài đặt hệ thống</h2>
+            <div class="space-y-4 mb-10">
+                <div onclick="toggleDarkMode(this)" class="card-style border p-5 rounded-xl flex justify-between items-center cursor-pointer hover:opacity-80 transition group shadow-sm">
+                    <span class="font-semibold">Giao diện Sáng / Tối</span>
+                    <div class="w-12 h-6 bg-gray-300 rounded-full relative transition toggle-bg">
+                        <div id="dark-dot" class="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm transition-all duration-300"></div>
+                    </div>
+                </div>
+                <div onclick="toggleNotify(this)" class="card-style border p-5 rounded-xl flex justify-between items-center cursor-pointer hover:opacity-80 transition group shadow-sm">
+                    <span class="font-semibold">Nhận thông báo hệ thống</span>
+                    <div class="w-12 h-6 bg-gray-300 rounded-full relative transition toggle-bg-notify">
+                        <div class="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 shadow-sm transition-all duration-300 toggle-dot-notify"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-title-style font-bold uppercase text-xs mb-6 tracking-widest">Cài đặt thông tin</h2>
+            <a href="cai-dat-thong-tin.html" class="card-style border p-5 rounded-xl flex justify-between items-center cursor-pointer hover:opacity-80 transition shadow-sm">
+                <span class="font-semibold">Chỉnh sửa thông tin tài khoản</span>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+        </div>
+    </main>
+
+    <div id="profile-container"></div>
+
+    <script>
+        if(localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.getElementById('dark-dot').classList.add('translate-x-6');
+            document.querySelector('.toggle-bg').classList.add('bg-green-500');
+        }
+
+        // HÀM ĐỒNG BỘ ẢNH KHI TRANG VỪA LOAD
+        function syncAvatars() {
+            const savedAvatar = localStorage.getItem('userAvatar');
+            if(savedAvatar) {
+                const imgHTML = `<img src="${savedAvatar}" class="w-full h-full object-cover">`;
+                const headerAvatar = document.getElementById('header-avatar');
+                if(headerAvatar) headerAvatar.innerHTML = imgHTML;
+                
+                // Cập nhật ảnh vào bảng hồ sơ (overlay) nếu bảng đã được load
+                const profileImgContainer = document.querySelector('#profile-overlay .w-20.h-20');
+                if(profileImgContainer) {
+                    profileImgContainer.innerHTML = `<img src="${savedAvatar}" class="w-full h-full object-cover">`;
+                }
+            }
+        }
+
+        function toggleDarkMode(el) {
+            const isDark = document.body.classList.toggle('dark');
+            el.querySelector('#dark-dot').classList.toggle('translate-x-6');
+            el.querySelector('.toggle-bg').classList.toggle('bg-green-500');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        function toggleNotify(el) {
+            el.querySelector('.toggle-dot-notify').classList.toggle('translate-x-6');
+            el.querySelector('.toggle-bg-notify').classList.toggle('bg-green-500');
+        }
+
+        // TỰ ĐỘNG LOAD FILE HỒ SƠ VÀ ĐỒNG BỘ ẢNH
+        fetch('../profile/ho-so.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('profile-container').innerHTML = data;
+                syncAvatars(); // Gọi đồng bộ sau khi load hồ sơ
+            });
+
+        function toggleProfile() {
+            const overlay = document.getElementById('profile-overlay');
+            if(overlay) overlay.classList.toggle('hidden');
+        }
+
+        // TÌM KIẾM
+        const menuItems = [
+            { name: 'Tổng Quan', link: '../portal/tong-quan.html', icon: 'fa-chart-simple' },
+            { name: 'Hợp đồng điện tử', link: '../contracts/hop-dong.html', icon: 'fa-paperclip' },
+            { name: 'Điện Nước', link: '../utilities/dien-nuoc.html', icon: 'fa-droplet' },
+            { name: 'Phòng của tôi', link: '../rooms/phong.html', icon: 'fa-house' },
+            { name: 'Lịch sử hóa đơn', link: '../invoices/hoa-don.html', icon: 'fa-dollar-sign' },
+            { name: 'Cài đặt tài khoản', link: 'cai-dat-thong-tin.html', icon: 'fa-user-gear' }
+        ];
+
+        function liveSearch(val) {
+            const res = document.getElementById('search-results');
+            const term = val.toLowerCase().trim();
+            if (!term) return res.classList.add('hidden');
+            const filtered = menuItems.filter(i => i.name.toLowerCase().includes(term));
+            res.classList.remove('hidden');
+            res.innerHTML = filtered.map(i => `
+                <a href="${i.link}" class="flex items-center gap-3 p-3 hover:bg-green-50 dark:hover:bg-zinc-800 transition border-b border-gray-50 dark:border-zinc-800 last:border-none">
+                    <i class="fa-solid ${i.icon} text-green-600"></i>
+                    <span class="text-sm font-semibold">${i.name}</span>
+                </a>
+            `).join('') || '<p class="p-4 text-center text-xs text-gray-400">Không tìm thấy</p>';
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#search-input')) document.getElementById('search-results').classList.add('hidden');
+        });
+
+        // Chạy đồng bộ ảnh ngay khi trang sẵn sàng
+        window.addEventListener('DOMContentLoaded', syncAvatars);
+    </script>
+</body>
+</html>

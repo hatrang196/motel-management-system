@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản - Welcome to 🏠</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <style>
+        /* Bổ sung style cho thanh độ mạnh mật khẩu nếu auth.css chưa có */
+        .password-strength {
+            height: 4px;
+            background: #e0e0e0;
+            margin-top: 8px;
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+        .password-strength.show { display: block; }
+        .strength-fill { height: 100%; width: 0; transition: all 0.3s; }
+        .strength-weak .strength-fill { width: 33%; background: #ff4d4d; }
+        .strength-medium .strength-fill { width: 66%; background: #ffa500; }
+        .strength-strong .strength-fill { width: 100%; background: #2ecc71; }
+        .strength-text { font-size: 12px; margin-top: 4px; display: block; }
+        
+        .auth-alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        .auth-alert.show { display: block; }
+        .auth-alert-error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+        .auth-alert-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <img src="../assets/images/background.jpg" alt="Cozy Room" class="background-image">
+        <div class="background-overlay"></div>
+    </div>
+
+    <div class="header">
+        <h1 class="logo-title">
+            Welcome to <span class="logo-emoji">🏠</span>
+        </h1>
+        <p class="subtitle">Ứng dụng quản lý nhà trọ thông minh - tiện lợi</p>
+    </div>
+
+    <div class="container">
+        <div class="auth-card" style="margin-top: 20px; max-height: 90vh; overflow-y: auto;">
+            <h2 class="card-title">Đăng ký tài khoản</h2>
+            
+            <div id="alertBox" class="auth-alert"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Họ và tên</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="fullName" class="form-input" placeholder="Nhập họ và tên đầy đủ" required>
+                        <span class="input-icon">👤</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" class="form-input" placeholder="Nhập địa chỉ email" required>
+                        <span class="input-icon">📧</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <div class="input-wrapper">
+                        <input type="tel" id="phone" class="form-input" placeholder="Nhập số điện thoại" required>
+                        <span class="input-icon">📱</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Tối thiểu 6 ký tự" required>
+                        <span class="input-icon" id="togglePassword" style="cursor: pointer;">👁️</span>
+                    </div>
+                    <div id="passwordStrength" class="password-strength">
+                        <div class="strength-fill"></div>
+                        <span class="strength-text"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="Nhập lại mật khẩu" required>
+                        <span class="input-icon" id="toggleConfirmPassword" style="cursor: pointer;">👁️</span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: flex; gap: 10px; align-items: flex-start;">
+                    <input type="checkbox" id="agreeTerms" required style="margin-top: 4px;">
+                    <label for="agreeTerms" style="font-size: 13px; color: var(--text-light);">
+                        Tôi đồng ý với <a href="#" style="color: var(--dark-green);">Điều khoản</a> và <a href="#" style="color: var(--dark-green);">Bảo mật</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Đăng ký ngay</button>
+
+                <div class="switch-page" style="text-align: center; margin-top: 20px; font-size: 14px;">
+                    Đã có tài khoản? <a href="login.html" style="color: var(--dark-green); font-weight: 600; text-decoration: none;">Đăng nhập</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/utilities.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        // Xử lý ẩn hiện mật khẩu
+        const setupToggle = (iconId, inputId) => {
+            const icon = document.getElementById(iconId);
+            const input = document.getElementById(inputId);
+            icon.addEventListener('click', () => {
+                const isPwd = input.type === 'password';
+                input.type = isPwd ? 'text' : 'password';
+                icon.textContent = isPwd ? '🙈' : '👁️';
+            });
+        };
+        setupToggle('togglePassword', 'password');
+        setupToggle('toggleConfirmPassword', 'confirmPassword');
+
+        // Password Strength
+        const pwdInput = document.getElementById('password');
+        const strengthDiv = document.getElementById('passwordStrength');
+        pwdInput.addEventListener('input', () => {
+            const val = pwdInput.value;
+            if(!val) { strengthDiv.classList.remove('show'); return; }
+            strengthDiv.classList.add('show');
+            
+            let strength = 'strength-weak';
+            let text = 'Yếu';
+            if(val.length >= 8 && /[0-9]/.test(val)) { strength = 'strength-strong'; text='Mạnh'; }
+            else if(val.length >= 6) { strength = 'strength-medium'; text='Trung bình'; }
+            
+            strengthDiv.className = `password-strength show ${strength}`;
+            strengthDiv.querySelector('.strength-text').textContent = text;
+        });
+
+        // Submit Form
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('alertBox');
+            const pass = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+
+            if(pass !== confirm) {
+                alertBox.textContent = "Mật khẩu xác nhận không khớp!";
+                alertBox.className = "auth-alert auth-alert-error show";
+                return;
+            }
+
+            // Gọi logic từ auth.js
+            alertBox.textContent = "Đăng ký thành công! Đang chuyển hướng...";
+            alertBox.className = "auth-alert auth-alert-success show";
+            setTimeout(() => window.location.href = 'login.html', 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Welcome to 🏠</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../assets/css/auth.css">
+</head>
+<body>
+    <div class="background-container">
+        <img src="../assets/images/background.jpg" alt="Cozy Room" class="background-image">
+        <div class="background-overlay"></div>
+    </div>
+
+    <div class="header">
+        <h1 class="logo-title">Welcome to <span class="logo-emoji">🏠</span></h1>
+        <p class="subtitle">Ứng dụng quản lý nhà trọ thông minh - tiện lợi</p>
+    </div>
+
+    <div class="container">
+        <div class="auth-card">
+            <h2 class="card-title">Đăng nhập</h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" class="form-input" placeholder="Nhập email của bạn" required>
+                        <span class="input-icon">📧</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Nhập mật khẩu" required>
+                        <span class="input-icon" id="togglePassword" style="cursor: pointer;">👁️</span>
+                    </div>
+                </div>
+
+                <div class="forgot-password" style="text-align: right; margin-bottom: 20px;">
+                    <a href="forgot-password.html" style="color: var(--dark-green); font-size: 13px; text-decoration: none;">Quên mật khẩu?</a>
+                </div>
+
+                <button type="submit" class="submit-btn">Đăng nhập</button>
+
+                <div class="switch-page" style="text-align: center; margin-top: 20px; font-size: 14px;">
+                    Chưa có tài khoản? <a href="register.html" style="color: var(--dark-green); font-weight: 600; text-decoration: none;">Đăng ký ngay</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        // Logic ẩn hiện mật khẩu nhanh
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        togglePassword.addEventListener('click', () => {
+            const isPwd = passwordInput.type === 'password';
+            passwordInput.type = isPwd ? 'text' : 'password';
+            togglePassword.textContent = isPwd ? '🙈' : '👁️';
+        });
+    </script>
+</body>
+</html>

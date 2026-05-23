@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt thông tin - Motel Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-bg: #F4FBF4;
+            --main-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text-main: #4b5563;
+            --text-title: #9ca3af;
+            --border-color: #f3f4f6;
+            --input-bg: #ffffff;
+        }
+
+        /* Chế độ Tối (Dark Mode) */
+        body.dark {
+            --sidebar-bg: #1a1a1a;
+            --main-bg: #121212;
+            --card-bg: #242424;
+            --text-main: #e5e7eb;
+            --text-title: #6b7280;
+            --border-color: #333333;
+            --input-bg: #2a2a2a;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--main-bg); 
+            color: var(--text-main); 
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+        .sidebar-bg { background-color: var(--sidebar-bg); transition: background-color 0.3s; }
+        .card-style { background-color: var(--card-bg); border-color: var(--border-color); transition: all 0.3s; }
+        .nav-active { background-color: #BEE9BE !important; color: white !important; font-weight: 600; }
+        .nav-active i { color: #2E7D32 !important; }
+        
+        .input-custom { 
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 12px 16px; 
+            width: 100%; 
+            outline: none; 
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+        .input-custom:focus { border-color: #A3E4A1; }
+    </style>
+</head>
+<body class="flex h-screen">
+
+    <aside class="w-64 sidebar-bg h-full border-r border-gray-100 flex flex-col shrink-0 overflow-hidden">
+        <div class="p-6 mb-4">
+            <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10L10 45V90H90V45L50 10Z" fill="#88C488"/>
+                <rect x="40" y="55" width="20" height="35" fill="#E5AA55"/>
+                <path d="M50 5L5 45H15V85H85V45H95L50 5Z" stroke="#88C488" stroke-width="4"/>
+            </svg>
+        </div>
+
+        <nav class="flex-1 px-4 overflow-y-auto">
+            <div class="mb-6">
+                <p class="px-3 text-xs font-bold uppercase mb-4 tracking-wider opacity-50">Nghiệp vụ</p>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-chart-simple w-6 text-xl"></i> <span class="font-semibold">Tổng Quan</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-dollar-sign w-6 text-xl"></i> <span class="font-semibold">Hóa Đơn</span>
+                </a>
+            </div>
+
+            <div class="mb-6">
+                <p class="px-3 text-xs font-bold uppercase mb-4 tracking-wider opacity-50">Dữ liệu</p>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-house w-6 text-xl"></i> <span class="font-semibold">Phòng</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-wifi w-6 text-xl"></i> <span class="font-semibold">Dịch Vụ</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-droplet w-6 text-xl"></i> <span class="font-semibold">Điện Nước</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-user-group w-6 text-xl"></i> <span class="font-semibold">Khách Hàng</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-paperclip w-6 text-xl"></i> <span class="font-semibold">Hợp Đồng</span>
+                </a>
+                <a href="#" class="flex items-center gap-4 p-3 hover:bg-black/5 rounded-lg transition">
+                    <i class="fa-solid fa-tag w-6 text-xl"></i> <span class="font-semibold">Giữ Phòng</span>
+                </a>
+            </div>
+
+            <div class="mt-auto pb-6">
+                <p class="px-3 text-xs font-bold uppercase mb-4 tracking-wider opacity-50">Nhà của tôi</p>
+                <a href="cai-dat-chung.html" class="flex items-center gap-4 p-3 nav-active rounded-xl shadow-sm">
+                    <i class="fa-solid fa-gear w-6 text-xl"></i> <span class="font-bold">Cài Đặt Chung</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-16 bg-white dark:bg-[#1a1a1a] border-b border-gray-100 flex items-center justify-between px-8 shrink-0 transition-colors">
+            <div class="flex items-center gap-3 text-gray-400">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Tìm kiếm..." class="bg-transparent outline-none text-sm w-64">
+            </div>
+            <div class="flex items-center gap-4">
+                <i class="fas fa-ellipsis-v text-gray-400"></i>
+                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-1 p-10 overflow-y-auto">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center gap-4 mb-6">
+                    <a href="cai-dat-chung.html" class="text-gray-400 hover:text-green-500 transition"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+                    <h2 class="text-gray-400 font-bold uppercase text-xs tracking-widest">Cài đặt thông tin tài khoản</h2>
+                </div>
+
+                <div class="card-style border rounded-2xl p-8 shadow-sm mb-6">
+                    <div class="flex flex-col items-center mb-8">
+                        <div id="avatar-container" class="w-24 h-24 bg-gray-100 dark:bg-zinc-800 rounded-full flex items-center justify-center mb-4 overflow-hidden border-2 border-dashed border-gray-300">
+                            <i class="fa-regular fa-user text-4xl opacity-30"></i>
+                        </div>
+                        <button onclick="document.getElementById('upload-input').click()" class="bg-[#BEE9BE] text-[#2E7D32] px-6 py-1.5 rounded-lg text-xs font-bold hover:bg-green-200 transition">
+                            Tải ảnh lên từ máy
+                        </button>
+                        <input type="file" id="upload-input" class="hidden" accept="image/*" onchange="previewUpload(this)">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" class="input-custom" placeholder="Họ và tên *">
+                        <input type="text" class="input-custom" placeholder="Giới tính">
+                        <input type="text" class="input-custom" placeholder="Địa chỉ thường trú *">
+                        <div class="relative">
+                            <input type="text" class="input-custom" placeholder="Ngày sinh *">
+                            <i class="fa-regular fa-calendar absolute right-4 top-4 text-gray-400"></i>
+                        </div>
+                        <input type="email" class="input-custom" placeholder="Email *">
+                        <input type="text" class="input-custom" placeholder="Số điện thoại">
+                    </div>
+                </div>
+
+                <div class="card-style border rounded-2xl p-8 shadow-sm mb-6">
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <input type="text" class="input-custom" placeholder="CCCD *">
+                        <div class="relative">
+                            <input type="text" class="input-custom" placeholder="Ngày cấp *">
+                            <i class="fa-regular fa-calendar absolute right-4 top-4 text-gray-400"></i>
+                        </div>
+                        <input type="text" class="input-custom" placeholder="Nơi cấp *">
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <input type="text" class="input-custom" placeholder="Nơi làm việc">
+                        <input type="text" class="input-custom" placeholder="Chức vụ">
+                        <input type="text" class="input-custom" placeholder="Địa chỉ làm việc">
+                    </div>
+                </div>
+
+                <div class="flex justify-end mt-4">
+                    <button class="bg-[#333333] dark:bg-white dark:text-black text-white px-8 py-3 rounded-xl flex items-center gap-3 hover:opacity-90 transition font-semibold shadow-lg">
+                        <i class="fa-solid fa-save"></i> Lưu thông tin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Đồng bộ Dark Mode từ localStorage
+        if(localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+
+        // Xử lý xem trước ảnh đại diện
+        function previewUpload(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const container = document.getElementById('avatar-container');
+                    container.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
