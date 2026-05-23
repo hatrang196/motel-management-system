@@ -2,7 +2,7 @@
 
 A robust, modular, and product-driven web application architecture designed to streamline property operations, tenant data management, and rental workflows. This project emphasizes clean software engineering principles, secure client-side logic, and scalable front-end data structures.
 
-Live Demo: [👉 Truy cập ứng dụng tại đây](https://hatrang196.github.io/motel-management-system/)]
+Live Demo: [👉 Truy cập ứng dụng tại đây](https://hatrang196.github.io/motel-management-system/)
 ---
 
 ## 🌟 Key Features
