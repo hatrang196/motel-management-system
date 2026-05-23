@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hệ thống quản lý nhà trọ thông minh - Giải pháp quản lý toàn diện cho chủ nhà trọ">
+    <title>Hệ thống Quản lý Nhà Trọ - Trang chủ</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #77C47C 0%, #77C47C 100%);
+        }
+
+        /* Header */
+        .header {
+            background-color: rgba(98, 226, 105, 0.263);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .hero-button-primary {
+            background-color: white;
+            color: #70c576;
+        }
+
+        .hero-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .hero-button-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .hero-button-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #a8e9acf6 0%, #78d57f 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background-color: var(--gray-50);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .header-nav {
+                gap: 16px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="landing-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🏠</span>
+                <span>MotelMS</span>
+            </a>
+            <nav class="header-nav">
+                <a href="#features" class="nav-link">Tính năng</a>
+                <a href="#about" class="nav-link">Giới thiệu</a>
+                <a href="auth/login.html" class="nav-link">Đăng nhập</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                Quản lý Nhà Trọ<br>Thông Minh & Hiệu Quả
+            </h1>
+            <p class="hero-subtitle">
+                Giải pháp toàn diện giúp chủ nhà trọ tự động hóa quy trình vận hành, 
+                quản lý khách thuê, hợp đồng và hóa đơn một cách dễ dàng
+            </p>
+            <div class="hero-buttons">
+                <a href="auth/register.html" class="hero-button hero-button-primary">
+                    Bắt đầu miễn phí
+                </a>
+                <a href="auth/login.html" class="hero-button hero-button-secondary">
+                    Đăng nhập
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Tính năng nổi bật</h2>
+            <p class="section-subtitle">
+                Hệ thống quản lý toàn diện cho cả chủ nhà trọ và người thuê
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3 class="feature-title">Quản lý Phòng & Dịch vụ</h3>
+                    <p class="feature-description">
+                        Quản lý thông tin phòng trọ, dịch vụ và cập nhật giá cả linh hoạt
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Quản lý Khách thuê</h3>
+                    <p class="feature-description">
+                        Lưu trữ thông tin khách thuê đầy đủ, dễ dàng tra cứu và quản lý
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3 class="feature-title">Hợp đồng Điện tử</h3>
+                    <p class="feature-description">
+                        Tạo, gửi và ký hợp đồng điện tử, xuất PDF tự động
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Quản lý Hóa đơn</h3>
+                    <p class="feature-description">
+                        Tạo hóa đơn hàng loạt, tự động tính toán điện nước và dịch vụ
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Yêu cầu Sửa chữa</h3>
+                    <p class="feature-description">
+                        Khách thuê gửi yêu cầu sửa chữa, theo dõi trạng thái xử lý
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Báo cáo & Thống kê</h3>
+                    <p class="feature-description">
+                        Xem báo cáo doanh thu, công nợ và thống kê lấp đầy phòng
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Miễn phí</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Loại tài khoản</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Truy cập mọi lúc</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Số lượng phòng</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="about" class="cta">
+        <div class="container">
+            <h2 class="cta-title">Sẵn sàng bắt đầu?</h2>
+            <p class="cta-subtitle">
+                Tạo tài khoản miễn phí ngay hôm nay và trải nghiệm hệ thống quản lý nhà trọ thông minh
+            </p>
+            <div class="hero-buttons">
+                <a href="auth/register.html" class="btn btn-primary btn-lg">
+                    Đăng ký ngay
+                </a>
+                <a href="auth/login.html" class="btn btn-outline btn-lg">
+                    Đăng nhập
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                &copy; 2024 Motel Management System. Đồ án môn học - Phát triển phần mềm.
+            </p>
+            <p class="footer-text">
+                Nhóm: Nguyễn Thị Huyền Trân - Trần Hà Trang - Trần Xuân Trường
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/utilities.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // If user is already logged in, show appropriate message
+        document.addEventListener('DOMContentLoaded', () => {
+            if (Auth.isAuthenticated()) {
+                const user = Auth.getCurrentUser();
+                const heroSubtitle = document.querySelector('.hero-subtitle');
+                heroSubtitle.innerHTML = `Xin chào, <strong>${user.fullName}</strong>! Bạn đã đăng nhập thành công.`;
+                
+                // Change CTA buttons
+                const heroButtons = document.querySelector('.hero-buttons');
+                const dashboardLink = user.role === 'admin' 
+                    ? '/admin/dashboard.html' 
+                    : '/tenant/portal/tong-quan.html';
+                
+                heroButtons.innerHTML = `
+                    <a href="${dashboardLink}" class="hero-button hero-button-primary">
+                        Vào trang quản lý
+                    </a>
+                    <button onclick="Auth.logout()" class="hero-button hero-button-secondary">
+                        Đăng xuất
+                    </button>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
